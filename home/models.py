@@ -73,6 +73,46 @@ class ServiceBlock(blocks.StructBlock):
 
 
 # ============================================================
+class TarifBlock(blocks.StructBlock):
+    """
+    Bloc "Tarifs" pour StreamField.
+    On pourra en ajouter plusieurs dans l'admin Wagtail.
+    """
+
+    badge = blocks.CharBlock(
+        required=False,
+        help_text="Petit texte au-dessus (ex : 01, 02, 03...)",
+        label="Badge / numéro"
+    )
+
+    title = blocks.CharBlock(
+        required=True,
+        max_length=120,
+        label="Titre du tarif"
+    )
+
+    description = blocks.TextBlock(
+        required=False,
+        label="Description courte"
+    )
+
+
+    features = blocks.ListBlock(
+        blocks.CharBlock(label="Point clé"),
+        required=False,
+        label="Liste de points clés (bullet points)"
+    )
+
+    class Meta:
+        icon = "cog"
+        label = "tarif"
+        help_text = "Bloc réutilisable pour présenter un tarif avec une image."
+
+
+
+
+
+# ============================================================
 # 2) Page d'accueil
 #    - hero (image + texte + boutons)
 #    - aperçu de 2–3 services
@@ -281,7 +321,7 @@ class AboutPage(Page):
 
     image_caption = models.CharField(
         "Légende de l’image",
-        max_length=255,
+        max_length=100,
         blank=True,
         default="",  # ✅ default vide
     )
@@ -415,5 +455,38 @@ class ContactPage(AbstractEmailForm):
     # Onglet "Submissions" dans l’admin (facultatif mais pratique)
     submissions_panels = [
         FormSubmissionsPanel(),
+    ]
+    # ============================================================
+# 7) Page "Nos Tarif"
+# ============================================================
+class TarifsPage(Page):
+    intro_title = models.CharField(
+        "Titre principal",
+        max_length=150,
+        default="Nos tarif",
+    )
+
+    intro_subtitle = models.TextField(
+        "Texte d’intro",
+        blank=True,
+        default="Voici un exemple de section tarifs que vous pouvez adapter.",  # ✅ default
+        help_text="Ex : 'Voici un exemple de section tarif...'"
+    )
+
+    # On réutilise tarif block avec image
+    tarifs = StreamField(
+        [
+            ("tarif", TarifBlock()),
+        ],
+        blank=True,
+        use_json_field=True,
+        verbose_name="Tarifs",
+        help_text="Liste complète des tarifs proposés.",
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel("intro_title"),
+        FieldPanel("intro_subtitle"),
+        FieldPanel("tarifs"),
     ]
 # Fin de models.py

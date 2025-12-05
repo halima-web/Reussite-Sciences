@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load wagtailimages_tags %}
 
-{% block title %}Nos services - Mon site vitrine{% endblock %}
+{% block title %}Nos tarifs - Mon site vitrine{% endblock %}
 
 {% block content %}
 <style>
@@ -11,45 +11,45 @@
     transition-duration: var(--tw-duration, var(--default-transition-duration));
 }
     /* =======================
-       Styles page "Nos services"
+       Styles page "Nos tarifs"
        ======================= */
 
-    .services-section {
+    .tarifs-section {
         padding: 3rem 0;
     }
 
-    .services-list-grid {
+    .tarifs-list-grid {
         margin-top: 2rem;
         display: grid;
         gap: 1.5rem;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
 
-    .service-card-full {
-        background: rgb(231, 195, 77);
+    .tarif-card-full {
+        background: rgb(246, 205, 108);
         border-radius: 1rem;
         padding: 1.5rem;
-        border: 1px solid #d75f14;
+        border: 1px solid #e5e7eb;
     }
 
-    .service-card-full h2 {
+    .tarif-card-full h2 {
         font-size: 1.15rem;
         margin-bottom: 0.5rem;
     }
 
-    .service-card-full p {
+    .tarif-card-full p {
         font-size: 0.95rem;
-        color: #4b5563;
+        color: #191204;
         margin-bottom: 0.75rem;
     }
 
-    .service-features {
+    .tarif-features {
         font-size: 0.9rem;
-        color: #6b7280;
+        color: #131415;
         margin-left: 1.1rem;
     }
 
-    .service-badge-full {
+    .tarif-badge-full {
         font-size: 0.8rem;
         text-transform: uppercase;
         letter-spacing: 0.12em;
@@ -62,57 +62,58 @@
        ======================= */
 
     @media (max-width: 768px) {
-        .services-section {
+        .tarifs-section {
             padding: 2.5rem 0;
         }
 
-        .services-list-grid {
+        .tarifs-list-grid {
             grid-template-columns: 1fr;
         }
     }
 </style>
 
-<section class="services-section">
+<section class="tarifs-section">
     <div class="container">
         <!-- Titre et sous-titre venant du modèle -->
         <h1 class="section-title">
-            {{ page.intro_title|default:"Nos services" }}
+            <body style="background-color: bisque;"></body>
+            {{ page.intro_title|default:"Nos tarifs" }}
         </h1>
         <p class="section-subtitle">
-            {{ page.intro_subtitle|default:"Retrouvez ici la liste complète des services proposés." }}
+            {{ page.intro_subtitle|default:"Retrouvez ici la liste complète des tarifs proposés." }}
         </p>
 
-        <div class="services-list-grid">
-            {% if page.services %}
-                {% for block in page.services %}
-                    {% if block.block_type == "service" %}
-                        {% with service=block.value %}
-                            <article class="service-card-full">
-                                {% if service.image %}
+        <div class="tarifs-list-grid">
+            {% if page.tarifs %}
+                {% for block in page.tarifs %}
+                    {% if block.block_type == "tarif" %}
+                        {% with tarif=block.value %}
+                            <article class="tarif-card-full">
+                                {% if tarif.image %}
                                     <div style="border-radius:0.9rem; overflow:hidden; margin-bottom:0.75rem;">
-                                        {% image service.image fill-600x350 %}
+                                        {% image tarif.image fill-600x350 %}
                                     </div>
                                 {% endif %}
 
-                                {% if service.badge %}
-                                    <div class="service-badge-full">
-                                        {{ service.badge }}
+                                {% if tarif.badge %}
+                                    <div class="tarif-badge-full">
+                                        {{ tarif.badge }}
                                     </div>
                                 {% endif %}
 
                                 <h2>
-                                    {{ service.title }}
+                                    {{ tarif.title }}
                                 </h2>
 
-                                {% if service.description %}
+                                {% if tarif.description %}
                                     <p>
-                                        {{ service.description }}
+                                        {{ tarif.description }}
                                     </p>
                                 {% endif %}
 
-                                {% if service.features %}
-                                    <ul class="service-features">
-                                        {% for feature in service.features %}
+                                {% if tarif.features %}
+                                    <ul class="tarif-features">
+                                        {% for feature in tarif.features %}
                                             <li>{{ feature }}</li>
                                         {% endfor %}
                                     </ul>
@@ -123,7 +124,7 @@
                 {% endfor %}
             {% else %}
                 <p style="color:#6b7280; font-size:0.95rem; margin-top:1.5rem;">
-                    Aucun service n’a encore été ajouté. Vous pouvez créer vos services dans l’admin Wagtail pour les voir apparaître ici.
+                    Aucun tarif n’a encore été ajouté. Vous pouvez créer vos tarifs dans l’admin Wagtail pour les voir apparaître ici.
                 </p>
             {% endif %}
         </div>

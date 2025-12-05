@@ -23,19 +23,19 @@
 
     .about-text p {
         font-size: 0.95rem;
-        color: #4b5563;
+        color: #0d0e0f;
         margin-bottom: 0.75rem;
     }
 
     .about-image-card {
-        background: white;
+        background: rgb(237, 189, 130);
         border-radius: 1.5rem;
         padding: 1.5rem;
-        border: 1px solid #e5e7eb;
+        border: 1px solid #f5d38b;
     }
 
     .about-image-card img {
-        width: 100%;
+        width:100%;
         display: block;
         border-radius: 1rem;
     }
@@ -69,6 +69,7 @@
     <div class="container">
         <!-- Titre et sous-titre depuis le modèle AboutPage -->
         <h1 class="section-title">
+            <body style="background-color: bisque;"></body>
             {{ page.intro_title|default:"À propos" }}
         </h1>
         <p class="section-subtitle">
@@ -91,6 +92,7 @@
                     <p>
                         Vous pouvez aussi ajouter des chiffres clés, une timeline ou des photos de votre équipe.
                     </p>
+                    
                 {% endif %}
             </div>
 

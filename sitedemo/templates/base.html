@@ -21,7 +21,7 @@
         body {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             color: #1f2933;
-            background-color: #f5f7fa;
+            background-color: #fcd2a2;
             line-height: 1.6;
         }
 
@@ -32,8 +32,8 @@
 
         /* Layout */
         header {
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
+            background: rgb(245, 179, 135);
+            border-bottom: 1px solid #f8b16a;
             position: sticky;
             top: 0;
             z-index: 10;
@@ -69,26 +69,26 @@
         }
 
         .nav-links a:hover {
-            border-bottom-color: #3b82f6;
+            border-bottom-color: #e0c5a2;
         }
 
         .btn-primary {
             display: inline-block;
             padding: 0.75rem 1.4rem;
             border-radius: 999px;
-            background: linear-gradient(135deg, #2563eb, #4f46e5);
-            color: white;
+            background: linear-gradient(135deg, #f4cdad, #bd7903);
+            color: rgb(245, 214, 192);
             font-weight: 500;
             font-size: 0.95rem;
-            border: none;
+            border: #2b1e02;
             cursor: pointer;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
-            box-shadow: 0 10px 18px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 10px 18px rgba(225, 98, 0, 0.25);
         }
 
         .btn-primary:hover {
             transform: translateY(-1px);
-            box-shadow: 0 14px 24px rgba(37, 99, 235, 0.35);
+            box-shadow: 0 14px 24px rgba(159, 75, 1, 0.35);
         }
 
         main {
@@ -98,8 +98,8 @@
         footer {
             margin-top: 3rem;
             padding: 2rem 0 1rem;
-            background: #111827;
-            color: #e5e7eb;
+            background: #f8d36c;
+            color: #871b0d;
         }
 
         .footer-top {
@@ -127,11 +127,11 @@
 
         .footer-links a {
             font-size: 0.9rem;
-            color: #9ca3af;
+            color: #171717;
         }
 
         .footer-links a:hover {
-            color: #ffffff;
+            color: #511b02;
         }
 
         .social-icons {
@@ -144,16 +144,16 @@
             width: 34px;
             height: 34px;
             border-radius: 999px;
-            border: 1px solid #4b5563;
+            border: 1px solid #2b1e02;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
-            color: #e5e7eb;
+            color: #905c0e;
         }
 
         .social-icon:hover {
-            background: #e5e7eb;
+            background: #a34909;
             color: #111827;
         }
 
@@ -161,7 +161,7 @@
             text-align: center;
             margin-top: 1rem;
             font-size: 0.8rem;
-            color: #6b7280;
+            color: #0b0b0b;
         }
 
         /* Sections génériques */
@@ -176,7 +176,7 @@
 
         .section-subtitle {
             font-size: 0.95rem;
-            color: #6b7280;
+            color: #0d0d0e;
         }
 
         /* Responsive */
@@ -195,6 +195,16 @@
                 flex-direction: column;
             }
         }
+        .footer-links {
+  list-style: none;
+  padding: 0;
+  columns: 2;        /* crée deux colonnes */
+  column-gap: 40px;  /* espace entre les colonnes */
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
     </style>
 </head>
 <body>
@@ -204,13 +214,14 @@
         <nav class="nav">
             <div class="logo">
                 <!-- Logo / Nom du site -->
-                <h1 style="font-size: 64px; font-weight: bold; color: #4e342e;">
+                <h1 style="font-size: 40px; font-weight: bold; color: #913723;">
   Café<span style="color:#a0522d;"> Bureau</span>
 </h1>
             </div>
            <div class="nav-links">
   <a href="/" style="font-weight: bold; color: #4e342e;">Accueil</a>
   <a href="/nos-services/" style="font-weight: bold; color: #4e342e;">Nos services</a>
+  <a href="/nos-tarifs/" style="font-weight: bold; color: #4e342e;">Nos tarifs</a>
   <a href="/a-propos/" style="font-weight: bold; color: #4e342e;">À propos</a>
   <a href="/contact/" style="font-weight: bold; color: #4e342e;">Contact</a>
 </div>
@@ -225,45 +236,74 @@
 </main>
 
 <footer>
-    <p style="text-align: center; font-size: 14px; color: #555;">
-Café Bureau vous accueille dans un espace convivial et inspirant : WiFi ultra-rapide, café premium, prises à chaque table, salles de réunion, horaires flexibles et accès sécurisé. Tout est pensé pour votre confort et votre productivité.
-</p>
+   
     <div class="container">
         <div class="footer-top">
             <div class="footer-column">
                 <h4>Café Bureau</h4>
-                <p style="font-size:0.9rem; color:#9ca3af;">
-                    Un exemple de site vitrine moderne avec Wagtail.
+                <p style="font-size:0.9rem; color:#793404;">
+                    Café Bureau vous accueille dans un espace convivial et inspirant : WiFi ultra-rapide, café premium, prises à chaque table, salles de réunion, horaires flexibles et accès sécurisé. Tout est pensé pour votre confort et votre productivité.
                 </p>
             </div>
 
             <div class="footer-column">
+
                 <h4>Navigation</h4>
                 <ul class="footer-links">
                     <!-- Rappel navigation dans le footer -->
                     <li><a href="/">Accueil</a></li>
                     <li><a href="/nos-services/">Nos services</a></li>
+                    <li><a href="/nos-tarifs/">Nos tarifs</a></li>
                     <li><a href="/a-propos/">À propos</a></li>
                     <li><a href="/contact/">Contact</a></li>
                 </ul>
             </div>
 
-            <div class="footer-column">
-                <h4>Suivez-nous</h4>
-                <p style="font-size:0.9rem; color:#9ca3af;">Retrouvez-nous sur les réseaux sociaux :</p>
-                <div class="social-icons">
-                    <!-- Icônes sociales simples (texte pour l'exemple) -->
-                    <a href="#" class="social-icon" aria-label="Facebook">F</a>
-                    <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
-                    <a href="#" class="social-icon" aria-label="Instagram">IG</a>
-                </div>
-            </div>
-        </div>
+           <!-- 1) Charger Font Awesome (dans <head>) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        <div class="footer-bottom">
+<!-- 2) Styles (dans <head>, après le lien Font Awesome) -->
+<style>
+  .social-icons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .social-icon {
+    color: #863604;             /* couleur par défaut (marron) */
+    font-size: 1.2rem;
+    transition: color 0.25s ease;
+    text-decoration: none;
+  }
+
+  /* Couleurs au hover, par réseau */
+  .social-icon.facebook:hover { color: #1877F2; }   /* bleu Facebook */
+  .social-icon.instagram:hover { color: #E4405F; }  /* rose Instagram */
+  .social-icon.linkedin:hover { color: #0A66C2; }   /* bleu LinkedIn */
+</style>
+
+<!-- 3) Ton footer (dans <body>) -->
+<div class="footer-column">
+  <h4>Suivez-nous</h4>
+  <p style="font-size:0.9rem; color:#863604;">Retrouvez-nous sur les réseaux sociaux :</p>
+
+  <div class="social-icons">
+    <a href="https://www.facebook.com/cafeBureaulyon" target="_blank" aria-label="Facebook" class="social-icon facebook">
+      <i class="fab fa-facebook-f" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.instagram.com/cafe_Bureau_lyon" target="_blank" aria-label="Instagram" class="social-icon instagram">
+      <i class="fab fa-instagram" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.linkedin.com/company/cafe-Bureau" target="_blank" aria-label="LinkedIn" class="social-icon linkedin">
+      <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+    </a>
+  </div>
+  <div class="footer-bottom">
             &copy; {% now "Y" %} Café Bureau · Tous droits réservés.
         </div>
-    </div>
+</div>
+
 </footer>
 
 </body>
