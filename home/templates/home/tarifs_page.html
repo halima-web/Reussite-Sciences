@@ -26,10 +26,10 @@
     }
 
     .tarif-card-full {
-        background: rgb(246, 205, 108);
+        background: rgb(251, 181, 216);
         border-radius: 1rem;
         padding: 1.5rem;
-        border: 1px solid #e5e7eb;
+        border: 1px solid #c26c7a;
     }
 
     .tarif-card-full h2 {
@@ -70,13 +70,17 @@
             grid-template-columns: 1fr;
         }
     }
+    .tarifs-image img {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
 </style>
 
 <section class="tarifs-section">
     <div class="container">
         <!-- Titre et sous-titre venant du modèle -->
         <h1 class="section-title">
-            <body style="background-color: bisque;"></body>
+            <body style="background-color: rgb(237, 193, 218);"></body>
             {{ page.intro_title|default:"Nos tarifs" }}
         </h1>
         <p class="section-subtitle">
@@ -128,6 +132,13 @@
                 </p>
             {% endif %}
         </div>
+        {% if page.image_bas %}
+        <div class="tarifs-image">
+            <img src="./about_page.html" alt="{{ page.image_bas.title }}" style="width:100%; margin-top:20px;">
+        </div>
+        {% endif %}
     </div>
 </section>
+
+
 {% endblock %}

@@ -32,7 +32,7 @@
     }
 
     .contact-card {
-        background: rgb(217, 148, 9);
+        background: rgb(244, 146, 213);
         border-radius: 1rem;
         padding: 1.5rem;
         border: 1px solid #e5e7eb;
@@ -71,7 +71,7 @@
         font-size: 0.9rem;
         margin-bottom: 0.35rem;
         font-weight: 500;
-        color: #0c0c0d;
+        color: #b50b82;
     }
 
     /* Style inputs et textarea */
@@ -83,10 +83,10 @@
         width: 100%;
         padding: 0.6rem 0.75rem;
         border-radius: 0.75rem;
-        border: 1px solid #fee7c5;
+        border: 1px solid #dcd8dc;
         font-size: 0.9rem;
         font-family: inherit;
-        background: rgb(236, 227, 180);
+        background: rgb(254, 200, 246);
     }
 
     /* Effet focus */
@@ -132,7 +132,7 @@
         <div class="contact-grid">
             <!-- Infos de contact -->
             <div>
-                <h2 style="font-size:1.15rem; margin-bottom:0.75rem;">Nous écrire</h2>
+
 
                 {% if page.contact_text %}
                     {{ page.contact_text|richtext }}
@@ -145,12 +145,6 @@
                 <p class="contact-infos">
                     <strong>Email :</strong>
                     {{ page.contact_email|default:"contact@monsitepro.fr" }}<br>
-
-                    {% if page.contact_phone %}
-                        <strong>Téléphone :</strong> {{ page.contact_phone }}<br>
-                    {% else %}
-                        <strong>Téléphone :</strong> +33 6 12 34 56 78<br>
-                    {% endif %}
 
                     <strong>Adresse :</strong>
                     {{ page.contact_address|default:"123 Rue de l’Exemple, 75000 Paris" }}

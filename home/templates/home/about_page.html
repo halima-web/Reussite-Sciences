@@ -27,11 +27,7 @@
         margin-bottom: 0.75rem;
     }
 
-    .about-image-card {
-        background: rgb(237, 189, 130);
-        border-radius: 1.5rem;
-        padding: 1.5rem;
-        border: 1px solid #f5d38b;
+    
     }
 
     .about-image-card img {
@@ -69,7 +65,7 @@
     <div class="container">
         <!-- Titre et sous-titre depuis le modèle AboutPage -->
         <h1 class="section-title">
-            <body style="background-color: bisque;"></body>
+            <body style="background-color: rgb(254, 187, 235);"></body>
             {{ page.intro_title|default:"À propos" }}
         </h1>
         <p class="section-subtitle">
@@ -109,8 +105,7 @@
                 <p class="about-caption">
                     {% if page.image_caption %}
                         {{ page.image_caption }}
-                    {% else %}
-                        Illustration d’exemple que vous pouvez remplacer par une photo qui représente mieux votre projet.
+                   
                     {% endif %}
                 </p>
             </div>

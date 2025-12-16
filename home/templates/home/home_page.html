@@ -10,28 +10,29 @@
        ======================= */
 
     .hero {
-        position: relative;
-        min-height: 120vh;
-        display: flex;
-        align-items: center;
-        color: rgb(250, 189, 57);
-        overflow: hidden;
-    }
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end; /* ✅ texte en bas */
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+}
+
 
     .hero-bg {
         position: absolute;
         inset: 0;
         background-size: cover;
         background-position: center;
-        filter: brightness(0.45);
-        z-index: -2;
+        filter: brightness(0.6);
+        z-index:-2;
     }
 
     .hero-overlay {
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at top left, rgba(250, 141, 229, 0.6), transparent),
-                    radial-gradient(circle at bottom right, rgba(249, 203, 139, 0.6), transparent);
+        background: radial-gradient(circle at top left, #ecb03845, transparent),
+                    radial-gradient(circle at bottom right,rgba(87, 3, 74, 0.6), transparent);
         mix-blend-mode: soft-light;
         z-index: -1;
     }
@@ -40,20 +41,24 @@
         max-width: 1100px;
         margin: 0 auto;
         padding: 3rem 1.5rem 4rem;
+        width: 100%;
     }
 
     .hero-kicker {
-        font-size: 0.85rem;
+        font-size: 1rem;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: #bfdbfe;
-        margin-bottom: 0.75rem;
+        color: #ffffff;
+        margin-bottom: 0.1rem;
+        font-weight: bold; /* ✅ texte en gras */
     }
 
     .hero-title {
-        font-size: clamp(2.1rem, 3vw + 1.2rem, 3rem);
+        font-size: clamp(3rem, 4vw + 1rem, 4rem); /* أكبر من قبل */
         font-weight: 700;
-        margin-bottom: 0.75rem;
+        color: #ffffff; /* أبيض باش يبان فوق الخلفية */
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.4); /* ظل باش يبان واضح */
+        margin-bottom: 1rem;
     }
 
     .hero-subtitle {
@@ -75,9 +80,9 @@
         border-radius: 999px;
         border: 1px solid rgba(229,231,235,0.6);
         font-size: 0.9rem;
-        background: rgba(167, 124, 14, 0.55);
+        background: rgba(17, 15, 16, 0.55);
         backdrop-filter: blur(6px);
-        color: #ffd096;
+        color: #f647c1;
     }
 
     .btn-secondary:hover {
@@ -86,7 +91,7 @@
 
     /* Section services sur la page d'accueil */
     .home-services {
-        background: rgb(248, 234, 165);
+        background: rgb(247, 194, 231);
         padding: 3rem 0;
     }
 
@@ -106,7 +111,7 @@
         text-decoration: none;
         cursor: pointer;
         min-height: 220px;
-        background: #111827;
+        background: #eeeff1;
         transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
     }
 
@@ -141,34 +146,34 @@
         inset: 0;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: flex-end
         padding: 1.1rem 1rem;
-        background: linear-gradient(
-            to top,
-            rgba(15, 23, 42, 0.9),
-            rgba(15, 23, 42, 0.3),
-            transparent
-        );
-        color: rgb(242, 185, 14);
+       
+        color: rgb(229, 12, 146);
     }
 
     .service-badge {
         font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.12em;
-        color: #f09a3e;
-        margin-bottom: 0.25rem;
+        color: #f4c6ed;
+        margin-bottom: 0.25rem; background: linear-gradient(
+            to top,
+            rgba(15, 23, 42, 0.9),
+            rgba(15, 23, 42, 0.3),
+            transparent
+        );
     }
 
     .service-title {
-        font-size: 1.1rem;
+        font-size: 4rem;
         font-weight: 600;
-        margin-bottom: 0.1rem;
+        margin-bottom: 2rem;
     }
 
     .service-subtext {
-        font-size: 0.8rem;
-        color: #e5e7eb;
+        font-size: 2rem;
+        color: #080a0c;
         opacity: 0.85;
     }
 
@@ -186,7 +191,7 @@
 
     .home-contact-cta p {
         margin-bottom: 0.75rem;
-        color: #4b5563;
+        color: #950a95;
         font-size: 0.95rem;
     }
 
@@ -228,7 +233,7 @@
 <section class="hero">
     {# Image de fond dynamique si configurée dans Wagtail, sinon image d'exemple #}
     {% if page.hero_background_image %}
-        {% image page.hero_background_image fill-1600x900 as hero_img %}
+        {% image page.hero_background_image fill-1000x600 as hero_img %}
         <div class="hero-bg" style="background-image: url('{{ hero_img.url }}');"></div>
     {% else %}
         <div class="hero-bg" style="background-image: url('https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg');"></div>
@@ -237,10 +242,7 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <!-- Ces textes viennent du modèle : hero_kicker, hero_title, hero_subtitle -->
-        <div class="hero-kicker">
-            {{ page.hero_kicker|default:"Agence digitale · Exemple Wagtail" }}
-        </div>
-
+       
         <h1 class="hero-title">
             {{ page.hero_title|default:"Créez un site vitrine moderne, clair et efficace." }}
         </h1>
@@ -248,6 +250,7 @@
         <p class="hero-subtitle">
             {{ page.hero_subtitle|default:"Cette page d’accueil vous sert d’exemple pour créer votre propre site vitrine avec Wagtail." }}
         </p>
+        <p class="hero-name">Par Halima </p>
 
         <div class="hero-actions">
             {# Bouton principal : texte + lien choisis dans l’admin #}
@@ -299,9 +302,7 @@
                                             <div class="service-badge">{{ service.badge }}</div>
                                         {% endif %}
                                         <h3 class="service-title">{{ service.title }}</h3>
-                                        <p class="service-subtext">
-                                            Voir ce service en détail →
-                                        </p>
+                                        
                                     </div>
                                 </div>
                             </a>
@@ -317,7 +318,7 @@
 
         <!-- Petit rappel vers la page contact -->
         <div class="home-contact-cta">
-            <p>Vous avez un projet en tête ?</p>
+            <p> Révisez votre programme avec Sciences Réussite et progressez rapidement avec nos cours et exercices! Tous nos contenus sont conformes aux programmes officiels </p>
             <a href="/contact/" class="btn-primary">Nous contacter</a>
         </div>
     </div>
