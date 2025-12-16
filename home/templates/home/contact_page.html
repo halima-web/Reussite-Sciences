@@ -5,10 +5,6 @@
 
 {% block content %}
 <style>
-    /* =======================
-       Styles page "Contact"
-       ======================= */
-
     .contact-section {
         padding: 3rem 0;
     }
@@ -20,17 +16,6 @@
         grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
     }
 
-    .contact-intro-text {
-        font-size: 0.95rem;
-        color: #4b5563;
-        margin-bottom: 0.75rem;
-    }
-
-    .contact-infos {
-        font-size: 0.95rem;
-        color: #4b5563;
-    }
-
     .contact-card {
         background: rgb(244, 146, 213);
         border-radius: 1rem;
@@ -38,30 +23,7 @@
         border: 1px solid #e5e7eb;
     }
 
-    .contact-form-group {
-        margin-bottom: 1rem;
-    }
-
-    .contact-label {
-        display: block;
-        font-size: 0.9rem;
-        margin-bottom: 0.35rem;
-    }
-
-    .contact-input,
-    .contact-textarea {
-        width: 100%;
-        padding: 0.6rem 0.75rem;
-        border-radius: 0.75rem;
-        border: 1px solid #d1d5db;
-        font-size: 0.9rem;
-        font-family: inherit;
-    }
-
-    .contact-textarea {
-        resize: vertical;
-    }
-     /* Style général pour les champs du formulaire Wagtail */
+    /* Style général pour les champs du formulaire Wagtail */
     form p {
         margin-bottom: 1rem;
     }
@@ -74,10 +36,8 @@
         color: #b50b82;
     }
 
-    /* Style inputs et textarea */
     form input[type="text"],
     form input[type="email"],
-    form input[type="tel"],
     form textarea,
     form select {
         width: 100%;
@@ -89,7 +49,10 @@
         background: rgb(254, 200, 246);
     }
 
-    /* Effet focus */
+    form textarea {
+        resize: vertical;
+    }
+
     form input:focus,
     form textarea:focus,
     form select:focus {
@@ -98,22 +61,38 @@
         box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
     }
 
-    /* Unifier le bouton si Django génère un <input type="submit"> */
     form input[type="submit"] {
         margin-top: 1rem;
     }
 
+    /* Blocs Email et Adresse */
+    .contact-infos-grid {
+        margin-top: 2rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+    }
 
-    /* =======================
-       Version mobile
-       ======================= */
+    .info-card {
+        background: #f4f4f4;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #4b5563;
+    }
+
+    .info-card h3 {
+        margin-bottom: 0.5rem;
+        color: #b50b82;
+        font-size: 1rem;
+    }
 
     @media (max-width: 768px) {
-        .contact-section {
-            padding: 2.5rem 0;
-        }
-
         .contact-grid {
+            grid-template-columns: 1fr;
+        }
+        .contact-infos-grid {
             grid-template-columns: 1fr;
         }
     }
@@ -121,7 +100,6 @@
 
 <section class="contact-section">
     <div class="container">
-        <!-- Titre et sous-titre depuis le modèle ContactPage -->
         <h1 class="section-title">
             {{ page.intro_title|default:"Contact" }}
         </h1>
@@ -130,46 +108,36 @@
         </p>
 
         <div class="contact-grid">
-            <!-- Infos de contact -->
+            <!-- Texte intro -->
             <div>
-
-
                 {% if page.contact_text %}
                     {{ page.contact_text|richtext }}
                 {% else %}
                     <p class="contact-intro-text">
-                        Ce formulaire peut vous servir de base pour une vraie page contact. Vous pourrez ensuite le relier à un modèle Wagtail ou à un système d’envoi d’email.
+                        Vous pouvez utiliser ce formulaire pour poser vos questions, demander des informations ou prendre rendez-vous.
                     </p>
                 {% endif %}
-
-                <p class="contact-infos">
-                    <strong>Email :</strong>
-                    {{ page.contact_email|default:"contact@monsitepro.fr" }}<br>
-
-                    <strong>Adresse :</strong>
-                    {{ page.contact_address|default:"123 Rue de l’Exemple, 75000 Paris" }}
-                </p>
             </div>
 
-            <!-- Formulaire de contact Wagtail (fonctionnel) -->
+            <!-- Formulaire -->
             <div class="contact-card">
                 <form action="{% pageurl page %}" method="post">
                     {% csrf_token %}
-
-                    {# Affichage des erreurs globales #}
-                    {% if form.non_field_errors %}
-                        <div class="form-errors">
-                            {{ form.non_field_errors }}
-                        </div>
-                    {% endif %}
-
-                    {# Affichage des champs créés dans l'admin Wagtail #}
                     {{ form.as_p }}
-
-                    <button type="submit" class="btn-primary">
-                        Envoyer le message
-                    </button>
+                    <button type="submit" class="btn-primary">Envoyer le message</button>
                 </form>
+            </div>
+        </div>
+
+        <!-- Blocs Email et Adresse en bas -->
+        <div class="contact-infos-grid">
+            <div class="info-card">
+                <h3>Email</h3>
+                <p>{{ page.contact_email|default:"contact@monsitepro.fr" }}</p>
+            </div>
+            <div class="info-card">
+                <h3>Adresse</h3>
+                <p>{{ page.contact_address|default:"123 Rue de l’Exemple, 75000 Paris" }}</p>
             </div>
         </div>
     </div>
